@@ -21,14 +21,23 @@ struct ContentView: View {
                 Text("Increment")
             }
             .padding(10)
+            .foregroundColor(.white)
+            .background(Color.green)
+            .cornerRadius(20)
             Button(action: { decreaseNumber() } ) {
                 Text("Decrease")
             }
             .padding(10)
+            .foregroundColor(.white)
+            .background(Color.red)
+            .cornerRadius(20)
             Button(action: { randomNumber() } ) {
                 Text("Random (-10 -> 10): \(randomNumberResult)")
             }
             .padding(10)
+            .foregroundColor(.black)
+            .background(Color.yellow)
+            .cornerRadius(20)
         }
         .padding()
     }
