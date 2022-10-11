@@ -8,52 +8,22 @@
 import SwiftUI
 
 struct ContentView: View {
-
-    @State var count: Int = 0
-    @State var randomNumberResult: Int = 0
+    @Environment(\.openURL) var openURL
 
     var body: some View {
-        VStack {
-            Text("Current count \(count)")
-                .padding(10)
-                .font(.largeTitle)
-            Button(action: { increaseNumber() } ) {
-                Text("Increment")
+        TabView {
+            SingleplayerView().tabItem() {
+                Text("Singleplayer").padding(10)
             }
-            .padding(10)
-            .foregroundColor(.white)
-            .background(Color.green)
-            .cornerRadius(20)
-            Button(action: { decreaseNumber() } ) {
-                Text("Decrease")
+            MultiplayerView().tabItem() {
+                Text("Multiplayer").padding(10)
             }
-            .padding(10)
-            .foregroundColor(.white)
-            .background(Color.red)
-            .cornerRadius(20)
-            Button(action: { randomNumber() } ) {
-                Text("Random (-10 -> 10): \(randomNumberResult)")
+            Button("Help online") {
+                openURL(URL(string: "https://en.wikipedia.org/wiki/Bulls_and_Cows")!)
+            }.tabItem() {
+                Text("Help").padding(10)
             }
-            .padding(10)
-            .foregroundColor(.black)
-            .background(Color.yellow)
-            .cornerRadius(20)
-        }
-        .padding()
-    }
-
-    func increaseNumber() {
-        count += 1
-    }
-
-    func decreaseNumber() {
-        count -= 1
-    }
-
-    func randomNumber() {
-        let number = Int(arc4random_uniform(21))
-        randomNumberResult = number - 10
-        count += randomNumberResult
+        }.padding(10)
     }
 }
 
